@@ -7,27 +7,29 @@ echo.
 
 git remote get-url origin >nul 2>&1
 if %errorlevel% neq 0 (
-    echo Enter your GitHub Repository URL (e.g. https://github.com/username/loan-approval.git):
-    set /p REPO_URL="URL: "
-    git remote add origin %REPO_URL%
+    git remote add origin https://github.com/ayeshasiddiqua111111111-commits/Loan-Approval.git
 ) else (
-    echo Existing remote origin found.
+    git remote set-url origin https://github.com/ayeshasiddiqua111111111-commits/Loan-Approval.git
 )
 
+echo Remote set to: https://github.com/ayeshasiddiqua111111111-commits/Loan-Approval.git
 echo.
-echo Pushing main branch to GitHub...
-git push -u origin main
+echo Pushing all files (including app, backend, and models) to GitHub...
+echo (If a browser window appears, click "Authorize" or "Sign In")
+echo.
+
+git push -u --force origin main
 
 if %errorlevel% equ 0 (
     echo.
     echo ========================================================
-    echo SUCCESS! Your project has been pushed to GitHub!
-    echo You can now go to vercel.com and import this repository.
+    echo SUCCESS! All files have been uploaded to GitHub!
+    echo Now open vercel.com and redeploy your project.
     echo ========================================================
 ) else (
     echo.
     echo ========================================================
-    echo Push failed. Please check your GitHub URL or login.
+    echo Push failed. If it asked to sign in, make sure you authorized GitHub.
     echo ========================================================
 )
 
